@@ -1,11 +1,29 @@
-# Start your own "Can of Books" App
+# Can of Books
 
-This repository has starter code to begin work on creating your own online bookshelf.
+## Logistical
+ - What hours will you be available to communicate?
+    - 1PM - 6PM
+ - What platform will you use to communicate (ie. Slack, phone …)?
+    - Slack
+ - How often will you take breaks?
+    - Every 2 hour 10 minute break
+ - What is your plan if you start to fall behind?
+    - Extend our work time
 
-## What can books do?
+## Cooperative
+ - Make a list of each person’s strengths.
+    - Edris --> Bootstrap, REACT | Joseph - Javascript, Server 
+ - How can you best utilize these strengths in the development of your application?
+    - Each person works in the areas of strength
+ - In what areas do you each want to develop greater strength?
+    - Edris - Javascript, Communication | Joseph - Communication
+ - Knowing that every person in your team needs to understand the code, how do you plan to approach the day-to-day development?
+    - We will switch off and explain our code to one another
 
-Books are life-changing. They have the power to enlighten, educate, entertain, heal, and help us grow. Build out this code base to create an web app to track what books have impacted you, and what's recommended to read next.
-
-## Use this template
-
-Clone this repo to your own account with the green "Use this template" button. Then, add any collaborators. Now you are ready to start adding features! Deploy your site to let the world know which books have had the greatest impact on you, and what's recommended. Enjoy!
+## Conflict Resolution
+ - What will your team do if one person is pulling all the weight while the other person is not contributing?
+    - Stop and start a conversation to find out why and resolve the issue
+ - What will your team do if one person is taking over the project and not letting the other member contribute?
+    - Stop and start a conversation to find out why and resolve the issue
+ - How will you approach each other and the challenge of building an application knowing that it is impossible for two people to be at the exact same place in understanding and skill level?
+    - Take the time to explain what the other person doesn't understand as well as ask questions if you don't understand.
