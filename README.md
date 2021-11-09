@@ -1,5 +1,36 @@
 # Can of Books
 
+**Authors**:  Joseph Nguyen, Edris Berg
+**Version**: 1.0.0 
+
+## Overview
+<!-- Provide a high level overview of what this application is and why you are building it, beyond the fact that it's an assignment for this class. (i.e. What's your problem domain?) -->
+Books are life-changing. They have the power to enlighten, educate, entertain, heal, and help us grow. A small app to track what books have impacted you, and what’s recommended to read next.
+
+## Architecture
+<!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
+Javascript, React, Bootstrap, Express, CORS, Node.js, MongoDB 
+
+## Change Log
+<!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an example:
+
+01-01-2001 4:59pm - Application now has a fully-functional express server, with a GET route for the location resource. -->
+11-08-2021 6:00pm - Created and deployed front and back end. Setup, storage, book component.
+
+## Estimates
+<!-- See below -->
+Name of feature: Set up your repositories
+
+Estimate of time needed to complete: _5hrs_
+
+Start time: _1:30PM_
+
+Finish time: _7:40PM_
+
+Actual time needed to complete: _6:10_
+
+## Credit and Collaborations
+<!-- Give credit (and a link) to other people or resources that helped you build this application. -->
 ## Logistical
  - What hours will you be available to communicate?
     - 1PM - 6PM
