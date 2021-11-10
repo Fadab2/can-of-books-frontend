@@ -3,6 +3,7 @@ import axios from 'axios'
 import Carousel from 'react-bootstrap/Carousel';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from "react-bootstrap/Button"
+import Container from 'react-bootstrap/Container';
 
 
 class BestBooks extends React.Component {
@@ -12,8 +13,11 @@ class BestBooks extends React.Component {
   postNewBook = async () => {
     console.log(this.props.newBook)
     let url = `${process.env.REACT_APP_SERVER_URL}/books`
+    // let url = `${process.env.REACT_APP_SERVER_URL}/books?email=${this.props.email}` //get email from apps.js
     let res = await axios.post(url, this.props.newBook);
+    // let res = await axios.get(url);
     this.setState({ books: [...this.state.books, res.data] });
+    // this.setState({ books: res.data})
   }
 
 
@@ -27,22 +31,25 @@ class BestBooks extends React.Component {
         <h2>My Essential Lifelong Learning &amp; Formation Shelf</h2>
 
         {this.props.books.length ? (
-          <Carousel>
-            {this.props.books.map((book) => {
-              return (
-                <Carousel.Item key={book.key}>
-                  <img src="https://images.pexels.com/videos/3045163/free-video-3045163.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="d-block w-100" alt="..."
-                    style={{ height: '350px' }} />
-                  <div class="carousel-caption d-none d-md-block">
-                    <h5>{book.title}</h5>
-                    <p>{book.description}</p>
-                    <Button variant="secondary" onClick={() => this.props.deleteBooks(book)}>Remove Book</Button>
-                  </div>
-                  
-                </Carousel.Item>)
-            })}
+          <Container>
+            <Carousel>
+              {this.props.books.map((book) => {
+                return (
 
-          </Carousel>
+                  <Carousel.Item key={book.key}>
+                    <img src="https://images.pexels.com/videos/3045163/free-video-3045163.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="d-block w-100" alt="..."
+                      style={{ height: '350px' }} />
+                    <div class="carousel-caption d-none d-md-block">
+                      <h5>{book.title}</h5>
+                      <p>{book.description}</p>
+                      <Button variant="secondary" onClick={() => this.props.deleteBooks(book)}>Remove Book</Button>
+                      <Button variant="secondary" onClick={() => { this.props.openForm(book._id, book.email) }}>Update Book</Button>
+                    </div>
+                  </Carousel.Item>)
+              })}
+
+            </Carousel>
+          </Container>
         ) : (
           <h3>No Books Found :(</h3>
         )}
@@ -54,15 +61,3 @@ class BestBooks extends React.Component {
 
 export default BestBooks;
 
-// export default class Cat extends Component {
-//   delete = () => {
-//     this.props.deleteCats(this.props.cat._id);
-//   }
-
-//   render() {
-//     return (
-//       <h3>{this.props.cat.name} ({this.props.cat.location}) <span onClick={this.delete}>[X]</span></h3>
-
-//     );
-//   }
-// }

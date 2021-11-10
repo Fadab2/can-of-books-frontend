@@ -6,23 +6,23 @@ import Form from 'react-bootstrap/Form'
 export default class BookFromModal extends Component {
 handleSubmit = (e) => {
     e.preventDefault()
-    this.props.setStateOfFrom(e.target.formName.value, e.target.formDesc.value, e.target.formStat.value)
-    this.props.closeModal()
+    this.props.updateBooks(e.target.formName.value, e.target.formDesc.value, e.target.formStat.value)
+    this.props.closeForm()
 }
 
     render() {
         return (
             <div>
-                <Modal show={this.props.show} onHide={this.props.closeModal}>
+                <Modal show={this.props.form} onHide={this.props.closeForm}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Add a Book</Modal.Title>
+                        <Modal.Title>Update Book</Modal.Title>
                     </Modal.Header>
 
                     <Modal.Body>
                         <Form onSubmit={this.handleSubmit}>
                             <Form.Group className="mb-3" controlId="formName">
                                 <Form.Label>Title</Form.Label>
-                                <Form.Control type="name" placeholder="Enter Book Name" />
+                                <Form.Control type="name" placeholder="Enter Book Name"/>
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="formDesc">
                                 <Form.Label>Description</Form.Label>
@@ -32,11 +32,11 @@ handleSubmit = (e) => {
                                 <Form.Check type="checkbox" label="Add to List" />
                             </Form.Group>
                             <Button variant="primary" type="submit">
-                                Submit
+                                Update
                             </Button>
                         </Form></Modal.Body>
                     <Modal.Footer>
-                        <Button variant="primary" onClick={this.props.closeModal}>
+                        <Button variant="primary" onClick={this.props.closeForm}>
                             Close
                         </Button>
                     </Modal.Footer>
@@ -45,6 +45,3 @@ handleSubmit = (e) => {
         )
     }
 }
-
-
-
