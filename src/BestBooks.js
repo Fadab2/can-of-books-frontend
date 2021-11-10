@@ -30,14 +30,15 @@ class BestBooks extends React.Component {
           <Carousel>
             {this.props.books.map((book) => {
               return (
-                <Carousel.Item>
+                <Carousel.Item key={book.key}>
                   <img src="https://images.pexels.com/videos/3045163/free-video-3045163.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="d-block w-100" alt="..."
                     style={{ height: '350px' }} />
                   <div class="carousel-caption d-none d-md-block">
                     <h5>{book.title}</h5>
                     <p>{book.description}</p>
-                    <span onClick={this.props.deleteBooks(book)}>X</span>
+                    <Button variant="secondary" onClick={() => this.props.deleteBooks(book)}>Remove Book</Button>
                   </div>
+                  
                 </Carousel.Item>)
             })}
 

@@ -23,21 +23,6 @@ class App extends React.Component {
       books: []
     }
   }
-  //done in class: add books
-  // postBooks = async (bookObj) => {
-  //   const url = `${SERVER}/books`
-  //   let res = await axios.post(url, bookObj)
-  //   this.setState({ book: [...this.books, res.data]});
-  // }
-
-  //delete books
-  //deleteBooks = async (id) => {
-  //   const url = `${SERVER}/books/${id}`
-  //    await axios.delete(url)
-  // let filterBooks = 
-  //   this.setState({ book: [...this.books, res.data]});
-  // }
-
 
   closeModal = () => {
     this.setState({ show: false });
@@ -68,12 +53,14 @@ class App extends React.Component {
   }
 
 
-  deleteBooks = async (book) => {
-    console.log(book._id)
-    // const url = `${process.env.REACT_APP_SERVER_URL}/books/${id}`;
-    // await axios.delete(url);
-    // let filteredBooks = this.state.books.filter(book => book._id !== id);
-    // this.setState({ books: filteredBooks });
+  deleteBooks = async(book) => {
+    if (book.email === this.state.user) {
+    let id = book._id
+    const url = `${process.env.REACT_APP_SERVER_URL}/books/${id}`;
+    await axios.delete(url);
+    let filteredBooks = this.state.books.filter(book => book._id !== id);
+    this.setState({ books: filteredBooks });
+    }
   }
   async componentDidMount() {
     console.log(process.env.REACT_APP_SERVER_URL)
@@ -109,13 +96,5 @@ class App extends React.Component {
 export default App;
 
 
-// export default class Cats extends Component {
-//   render() {
-//     return (
-//       <ListGroup>
-//         {this.props.cats.length > 0 && this.props.cats.map(cat => (
-//           <ListGroup.Item key={cat._id} >
-//             <Cat cat={cat} deleteCats={this.props.deleteCats} />
-//           </ListGroup.Item>
-//         ))}
+
 
