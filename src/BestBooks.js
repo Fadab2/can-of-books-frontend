@@ -8,14 +8,16 @@ import Button from "react-bootstrap/Button"
 class BestBooks extends React.Component {
 
   /* TODO: Make a GET request to your API to fetch books for the logged in user  */
-  
-  postNewBook = async () =>{
+
+  postNewBook = async () => {
     console.log(this.props.newBook)
     let url = `${process.env.REACT_APP_SERVER_URL}/books`
     let res = await axios.post(url, this.props.newBook);
-    this.setState({ books: [...this.state.books, res.data]});
+    this.setState({ books: [...this.state.books, res.data] });
   }
-  
+
+
+
   render() {
 
     /* TODO: render user's books in a Carousel */
@@ -34,6 +36,7 @@ class BestBooks extends React.Component {
                   <div class="carousel-caption d-none d-md-block">
                     <h5>{book.title}</h5>
                     <p>{book.description}</p>
+                    <span onClick={this.props.deleteBooks(book)}>X</span>
                   </div>
                 </Carousel.Item>)
             })}
@@ -50,3 +53,15 @@ class BestBooks extends React.Component {
 
 export default BestBooks;
 
+// export default class Cat extends Component {
+//   delete = () => {
+//     this.props.deleteCats(this.props.cat._id);
+//   }
+
+//   render() {
+//     return (
+//       <h3>{this.props.cat.name} ({this.props.cat.location}) <span onClick={this.delete}>[X]</span></h3>
+
+//     );
+//   }
+// }

@@ -61,14 +61,20 @@ class App extends React.Component {
 
   setStateOfFrom = async (title, description, status) => {
     let email = this.state.user
-    let temp = { title, description, status, email }
-    console.log(temp)
-    let url = `${process.env.REACT_APP_SERVER_URL}/books`
-    let res = await axios.post(url, temp);
-    console.log(url, temp)
+    let url = `${process.env.REACT_APP_SERVER_URL}/books?title=${title}&description=${description}&status=${status}&email=${email}`;
+    let res = await axios.post(url);
     this.setState({ books: [...this.state.books, res.data] });
+    console.log(url)
   }
 
+
+  deleteBooks = async (book) => {
+    console.log(book._id)
+    // const url = `${process.env.REACT_APP_SERVER_URL}/books/${id}`;
+    // await axios.delete(url);
+    // let filteredBooks = this.state.books.filter(book => book._id !== id);
+    // this.setState({ books: filteredBooks });
+  }
   async componentDidMount() {
     console.log(process.env.REACT_APP_SERVER_URL)
     let booksFromServer = await axios.get(`${process.env.REACT_APP_SERVER_URL}/books`);
@@ -76,7 +82,6 @@ class App extends React.Component {
     console.log(booksFromServer)
     console.log('running')
   }
-
   render() {
     return (
       <>
@@ -85,7 +90,7 @@ class App extends React.Component {
           <Switch>
             <Route exact path="/">
               {/* TODO: if the user is logged in, render the `BestBooks` component, if they are not, render the `Login` component */
-                this.state.user ? <BestBooks books={this.state.books} newBook={this.state.newBook} openModal={this.openModal} /> : <Login loginHandler={this.loginHandler} />
+                this.state.user ? <BestBooks deleteBooks={this.deleteBooks} books={this.state.books} newBook={this.state.newBook} openModal={this.openModal} /> : <Login loginHandler={this.loginHandler} />
               }
               <BookFromModal setStateOfFrom={this.setStateOfFrom} closeModal={this.closeModal} openModal={this.openModal} show={this.state.show} />
             </Route>
@@ -102,3 +107,15 @@ class App extends React.Component {
 }
 
 export default App;
+
+
+// export default class Cats extends Component {
+//   render() {
+//     return (
+//       <ListGroup>
+//         {this.props.cats.length > 0 && this.props.cats.map(cat => (
+//           <ListGroup.Item key={cat._id} >
+//             <Cat cat={cat} deleteCats={this.props.deleteCats} />
+//           </ListGroup.Item>
+//         ))}
+
