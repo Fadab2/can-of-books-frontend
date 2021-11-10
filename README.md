@@ -16,6 +16,7 @@ Javascript, React, Bootstrap, Express, CORS, Node.js, MongoDB
 
 01-01-2001 4:59pm - Application now has a fully-functional express server, with a GET route for the location resource. -->
 11-08-2021 6:00pm - Created and deployed front and back end. Setup, storage, book component.
+11-09-2021  - .
 
 ## Estimates
 <!-- See below -->
@@ -28,6 +29,21 @@ Start time: _1:30PM_
 Finish time: _7:40PM_
 
 Actual time needed to complete: _6:10_
+
+
+11-09-2021 - CREATE and DELETE of CRUD
+
+## Estimates
+<!-- See below -->
+Name of feature: Set up your repositories
+
+Estimate of time needed to complete: _6hrs_
+
+Start time: _1:45PM_
+
+Finish time: __
+
+Actual time needed to complete: __
 
 ## Credit and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->

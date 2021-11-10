@@ -2,23 +2,20 @@ import React from 'react';
 import axios from 'axios'
 import Carousel from 'react-bootstrap/Carousel';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Button from "react-bootstrap/Button"
 
 
 class BestBooks extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      books: []
-    }
-  }
 
   /* TODO: Make a GET request to your API to fetch books for the logged in user  */
-  async componentDidMount() {
-    let booksFromServer = await axios.get(`${process.env.REACT_APP_SERVER_URL}/books`);
-    this.setState({ books: booksFromServer.data });
-    console.log(booksFromServer)
-    console.log('running')
+
+  postNewBook = async () => {
+    console.log(this.props.newBook)
+    let url = `${process.env.REACT_APP_SERVER_URL}/books`
+    let res = await axios.post(url, this.props.newBook);
+    this.setState({ books: [...this.state.books, res.data] });
   }
+
 
 
   render() {
@@ -29,22 +26,43 @@ class BestBooks extends React.Component {
       <>
         <h2>My Essential Lifelong Learning &amp; Formation Shelf</h2>
 
-        {this.state.books.length ? (
+        {this.props.books.length ? (
           <Carousel>
-          {this.state.books.map((book) => {
-          return(
-          <Carousel.Item>
-          <h3>{book.title}</h3>
-          <p>{book.description}</p>
-          </Carousel.Item>)})}
-          
-        </Carousel>
+            {this.props.books.map((book) => {
+              return (
+                <Carousel.Item key={book.key}>
+                  <img src="https://images.pexels.com/videos/3045163/free-video-3045163.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="d-block w-100" alt="..."
+                    style={{ height: '350px' }} />
+                  <div class="carousel-caption d-none d-md-block">
+                    <h5>{book.title}</h5>
+                    <p>{book.description}</p>
+                    <Button variant="secondary" onClick={() => this.props.deleteBooks(book)}>Remove Book</Button>
+                  </div>
+                  
+                </Carousel.Item>)
+            })}
+
+          </Carousel>
         ) : (
           <h3>No Books Found :(</h3>
         )}
+        <Button variant="primary" onClick={this.props.openModal}>Add Book</Button>
       </>
     )
   }
 }
 
 export default BestBooks;
+
+// export default class Cat extends Component {
+//   delete = () => {
+//     this.props.deleteCats(this.props.cat._id);
+//   }
+
+//   render() {
+//     return (
+//       <h3>{this.props.cat.name} ({this.props.cat.location}) <span onClick={this.delete}>[X]</span></h3>
+
+//     );
+//   }
+// }
