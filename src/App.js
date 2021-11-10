@@ -70,6 +70,7 @@ class App extends React.Component {
   }
 
   async componentDidMount() {
+    console.log(process.env.REACT_APP_SERVER_URL)
     let booksFromServer = await axios.get(`${process.env.REACT_APP_SERVER_URL}/books`);
     this.setState({ books: booksFromServer.data });
     console.log(booksFromServer)
