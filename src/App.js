@@ -12,6 +12,7 @@ import Login from './Login'
 import Profile from './Profile'
 import axios from 'axios';
 import BookFromModal from './BookFromModal';
+import BookUpdateFormModal from './BookUpdateFormModal'
 
 class App extends React.Component {
 
@@ -20,7 +21,9 @@ class App extends React.Component {
     this.state = {
       user: null,
       show: false,
-      books: []
+      books: [],
+      form: false,
+
     }
   }
 
@@ -30,8 +33,17 @@ class App extends React.Component {
 
   openModal = () => {
     this.setState({ show: true });
+
+  };
+  closeForm = () => {
+    this.setState({ form: false });
   };
 
+  openForm = (id, email) => {
+    if (email === this.state.user) { this.setState({ form: true, id }); }
+    else { alert("You can only update your own books.") }
+
+  };
   loginHandler = (user) => {
     this.setState({
       user,
@@ -44,30 +56,40 @@ class App extends React.Component {
     })
   }
 
-  setStateOfFrom = async (title, description, status) => {
+  setStateOfFrom = async (title, description, stat) => {
+    let status = (stat === 'true')
     let email = this.state.user
-    let url = `${process.env.REACT_APP_SERVER_URL}/books?title=${title}&description=${description}&status=${status}&email=${email}`;
-    let res = await axios.post(url);
+    let newBook = { title, description, status, email }
+    let url = `${process.env.REACT_APP_SERVER_URL}/books`;
+    let res = await axios.post(url, newBook);
     this.setState({ books: [...this.state.books, res.data] });
-    console.log(url)
   }
 
 
-  deleteBooks = async(book) => {
+  deleteBooks = async (book) => {
     if (book.email === this.state.user) {
-    let id = book._id
-    const url = `${process.env.REACT_APP_SERVER_URL}/books/${id}`;
-    await axios.delete(url);
-    let filteredBooks = this.state.books.filter(book => book._id !== id);
-    this.setState({ books: filteredBooks });
-    }
+      let id = book._id
+      const url = `${process.env.REACT_APP_SERVER_URL}/books/${id}`;
+      await axios.delete(url);
+      let filteredBooks = this.state.books.filter(book => book._id !== id);
+      this.setState({ books: filteredBooks });
+    } else { alert("You can only delete your own books.") }
   }
+  updateBooks = async (title, description, stat) => {
+    let status = (stat === 'true')
+    let id = this.state.id
+    let book = { title, description, status, email: this.state.user }
+    const url = `${process.env.REACT_APP_SERVER_URL}/books/${id}`;
+    let updatedBook = await axios.put(url, book);
+    let filteredBooks = this.state.books.filter(book => book._id !== id);
+    filteredBooks.push(updatedBook.data)
+    this.setState({ books: filteredBooks });
+
+  }
+
   async componentDidMount() {
-    console.log(process.env.REACT_APP_SERVER_URL)
     let booksFromServer = await axios.get(`${process.env.REACT_APP_SERVER_URL}/books`);
     this.setState({ books: booksFromServer.data });
-    console.log(booksFromServer)
-    console.log('running')
   }
   render() {
     return (
@@ -77,9 +99,10 @@ class App extends React.Component {
           <Switch>
             <Route exact path="/">
               {/* TODO: if the user is logged in, render the `BestBooks` component, if they are not, render the `Login` component */
-                this.state.user ? <BestBooks deleteBooks={this.deleteBooks} books={this.state.books} newBook={this.state.newBook} openModal={this.openModal} /> : <Login loginHandler={this.loginHandler} />
+                this.state.user ? <BestBooks openForm={this.openForm} email={this.state.user} deleteBooks={this.deleteBooks} books={this.state.books} newBook={this.state.newBook} openModal={this.openModal} /> : <Login loginHandler={this.loginHandler} />
               }
               <BookFromModal setStateOfFrom={this.setStateOfFrom} closeModal={this.closeModal} openModal={this.openModal} show={this.state.show} />
+              <BookUpdateFormModal updateBooks={this.updateBooks} closeForm={this.closeForm} form={this.state.form}></BookUpdateFormModal>
             </Route>
             {/* TODO: add a route with a path of '/profile' that renders a `Profile` component */}
             <Route path="/profile">

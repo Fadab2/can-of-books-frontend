@@ -16,9 +16,8 @@ Javascript, React, Bootstrap, Express, CORS, Node.js, MongoDB
 
 01-01-2001 4:59pm - Application now has a fully-functional express server, with a GET route for the location resource. -->
 11-08-2021 6:00pm - Created and deployed front and back end. Setup, storage, book component.
-11-09-2021  - .
-
-## Estimates
+11-09-2021 7:00pm - Application now allows adding and removing books.
+11-09-2021 4:00pm - Application now allows updating an existing book. 
 <!-- See below -->
 Name of feature: Set up your repositories
 
@@ -31,19 +30,30 @@ Finish time: _7:40PM_
 Actual time needed to complete: _6:10_
 
 
-11-09-2021 - CREATE and DELETE of CRUD
-
 ## Estimates
 <!-- See below -->
-Name of feature: Set up your repositories
-
+Name of feature: Adding POST and DELETE to allow adding and removing books
 Estimate of time needed to complete: _6hrs_
 
 Start time: _1:45PM_
 
-Finish time: __
+Finish time: _7:00PM_
 
-Actual time needed to complete: __
+Actual time needed to complete: _5:15hrs_
+
+11-10-2021 - POST
+
+## Estimates
+<!-- See below -->
+Name of feature: Adding PUT to allow book updates
+
+Estimate of time needed to complete: _3hrs_
+
+Start time: _1:20PM_
+
+Finish time: _4:00PM_
+
+Actual time needed to complete: _2:40hrs_
 
 ## Credit and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
