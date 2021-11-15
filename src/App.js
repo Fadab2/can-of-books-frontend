@@ -87,10 +87,28 @@ class App extends React.Component {
 
   }
 
-  async componentDidMount() {
-    let booksFromServer = await axios.get(`${process.env.REACT_APP_SERVER_URL}/books`);
-    this.setState({ books: booksFromServer.data });
+  getBooks = async () => {
+    if (this.props.auth0.isAuthenticated) {
+
+      const res = await this.props.auth0.getIdTokenClaims();
+
+      const jwt = res.__raw;
+
+      const config = {
+        headers: { "Authorization": `Bearer ${jwt}` },
+        method: 'get',
+        baseURL: process.env.REACT_APP_SERVER_URL,
+        url: '/books'
+      }
+
+      const booksResponse = await axios(config);
+
+      this.setState({ books: booksResponse.data });
+      console.log(this.state.books)
+    }
   }
+
+
   render() {
     return (
       <>
@@ -99,7 +117,7 @@ class App extends React.Component {
           <Switch>
             <Route exact path="/">
               {/* TODO: if the user is logged in, render the `BestBooks` component, if they are not, render the `Login` component */
-                this.props.auth0.user ? <BestBooks openForm={this.openForm} deleteBooks={this.deleteBooks} books={this.state.books} newBook={this.state.newBook} openModal={this.openModal} />  />
+                this.props.auth0.user && <BestBooks getBooks={this.getBooks} openForm={this.openForm} deleteBooks={this.deleteBooks} books={this.state.books} newBook={this.state.newBook} openModal={this.openModal} /> 
               }
               <BookFromModal setStateOfFrom={this.setStateOfFrom} closeModal={this.closeModal} openModal={this.openModal} show={this.state.show} />
               <BookUpdateFormModal updateBooks={this.updateBooks} closeForm={this.closeForm} form={this.state.form}></BookUpdateFormModal>

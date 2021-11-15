@@ -20,7 +20,9 @@ class BestBooks extends React.Component {
     // this.setState({ books: res.data})
   }
 
-
+  componentDidMount() {
+    this.props.getBooks()
+}
 
   render() {
 
