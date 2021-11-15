@@ -29,7 +29,7 @@ handleSubmit = (e) => {
                                 <Form.Control type="name" placeholder="Enter Description" />
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="formStat">
-                                <Form.Check type="checkbox" label="Add to List" />
+                                <Form.Check type="checkbox" label="Read" />
                             </Form.Group>
                             <Button variant="primary" type="submit">
                                 Submit

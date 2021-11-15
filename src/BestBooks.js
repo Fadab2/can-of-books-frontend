@@ -1,10 +1,10 @@
 import React from 'react';
 import axios from 'axios'
 import Carousel from 'react-bootstrap/Carousel';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from "react-bootstrap/Button"
 import Container from 'react-bootstrap/Container';
-
+import Badge from 'react-bootstrap/Badge';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 class BestBooks extends React.Component {
 
@@ -20,7 +20,9 @@ class BestBooks extends React.Component {
     // this.setState({ books: res.data})
   }
 
-
+componentDidMount() {
+    this.props.getBooks()
+  }
 
   render() {
 
@@ -42,8 +44,12 @@ class BestBooks extends React.Component {
                     <div class="carousel-caption d-none d-md-block">
                       <h5>{book.title}</h5>
                       <p>{book.description}</p>
-                      <Button variant="secondary" onClick={() => this.props.deleteBooks(book)}>Remove Book</Button>
-                      <Button variant="secondary" onClick={() => { this.props.openForm(book._id, book.email) }}>Update Book</Button>
+                      <div>
+                      {(book.status) ? (<Badge bg="success">Read</Badge>) : (<Badge bg="secondary">Unread</Badge>) 
+                      }
+                      </div>
+                      <Button style={{margin: "5px", padding: "4px"}} variant="secondary" onClick={() => this.props.deleteBooks(book)}>Remove Book</Button>
+                      <Button style={{margin: "5px", padding: "4px"}} variant="secondary" onClick={() => { this.props.openForm(book._id, book.email) }}>Update Book</Button>
                     </div>
                   </Carousel.Item>)
               })}
