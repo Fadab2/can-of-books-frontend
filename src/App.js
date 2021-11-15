@@ -51,6 +51,7 @@ class App extends React.Component {
 
   deleteBooks = async (book) => {
     if (book.email === this.props.auth0.user.email) {
+      console.log('deleting')
       let id = book._id;
       const url = `${process.env.REACT_APP_SERVER_URL}/books/${id}`;
       await axios.delete(url);
