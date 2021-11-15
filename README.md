@@ -18,6 +18,7 @@ Javascript, React, Bootstrap, Express, CORS, Node.js, MongoDB
 11-08-2021 6:00pm - Created and deployed front and back end. Setup, storage, book component.
 11-09-2021 7:00pm - Application now allows adding and removing books.
 11-09-2021 4:00pm - Application now allows updating an existing book. 
+11-14-2021 7:00pm - Application now is fully functional and uses Auth0 to authenticate users.
 <!-- See below -->
 Name of feature: Set up your repositories
 
@@ -54,6 +55,19 @@ Start time: _1:20PM_
 Finish time: _4:00PM_
 
 Actual time needed to complete: _2:40hrs_
+
+## Estimates
+<!-- See below -->
+Name of feature: Adding OAuth sign in with OAuth
+
+Estimate of time needed to complete: _4_
+
+Start time: _6:00PM_
+
+Finish time: _8:00PM_
+
+Actual time needed to complete: _2:00hrs_
+
 
 ## Credit and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
