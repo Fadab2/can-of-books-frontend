@@ -1,12 +1,11 @@
-import { Component } from "react";
+import React, { Component } from 'react';
+import { withAuth0 } from '@auth0/auth0-react';
 
 class Profile extends Component {
 
   render() {
-    /* TODO: render information about logged in user */
-    /* STRETCH TODO: if no logged in user then redirect home */
-    return <p>User email: {this.props.user}</p>
+    return <div>Hello {this.props.auth0.user.name}:{this.props.auth0.user.email}</div>;
   }
-};
+}
 
-export default Profile;
+export default withAuth0(Profile);
