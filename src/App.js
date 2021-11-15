@@ -41,7 +41,7 @@ class App extends React.Component {
 
 
   setStateOfFrom = async (title, description, stat) => {
-    let status = stat === "true";
+    let status = stat === "on";
     let email = this.props.auth0.user.email;
     let newBook = { title, description, status, email };
     let url = `${process.env.REACT_APP_SERVER_URL}/books`;
@@ -51,6 +51,7 @@ class App extends React.Component {
 
   deleteBooks = async (book) => {
     if (book.email === this.props.auth0.user.email) {
+      console.log('deleting')
       let id = book._id;
       const url = `${process.env.REACT_APP_SERVER_URL}/books/${id}`;
       await axios.delete(url);
@@ -61,7 +62,8 @@ class App extends React.Component {
     }
   };
   updateBooks = async (title, description, stat) => {
-    let status = stat === "true";
+    console.log(stat)
+    let status = stat === "on";
     let id = this.state.id;
     let book = { title, description, status, email: this.props.auth0.user.email };
     const url = `${process.env.REACT_APP_SERVER_URL}/books/${id}`;
